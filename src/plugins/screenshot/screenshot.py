@@ -1,6 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+>>>>>>> ff4d02d (From Selenium)
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 from utils.image_utils import take_screenshot
@@ -37,8 +42,6 @@ from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 import io
 import requests
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
