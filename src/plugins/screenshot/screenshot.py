@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
@@ -10,6 +11,8 @@ from selenium.webdriver.chrome.options import Options
 =======
 from selenium.webdriver.chrome.service import Service
 >>>>>>> 4e55a9d (Service Selenium)
+=======
+>>>>>>> 72fb6c6 (Service Path Chrome)
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 from utils.image_utils import take_screenshot
@@ -46,7 +49,9 @@ from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 import io
 import requests
-
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
         ip_address = settings.get('ip_address')
@@ -68,8 +73,9 @@ class Screenshot(BasePlugin):
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument(f"--window-size=1920,1080")
-
-        driver = webdriver.Chrome(options=chrome_options)
+        service = Service("/usr/local/inkypi/venv_inkypi/lib/chromium-browser/chromedriver")  # Pfad anpassen, falls nötig
+        driver = webdriver.Chrome(service=service,options=chrome_options)
+       # driver = webdriver.Chrome()
         driver.get(url)
         png = driver.get_screenshot_as_png()
         driver.quit()
