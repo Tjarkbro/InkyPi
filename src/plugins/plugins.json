@@ -31,8 +31,8 @@
         "class": "Weather"
     },
     {
-        "display_name": "Web Screenshot",
-        "id": "web_screenshot",
-        "class": "WebScreenshot"
+        "display_name": "Screenshot",
+        "id": "screenshot",
+        "class": "Screenshot"
     }
 ]

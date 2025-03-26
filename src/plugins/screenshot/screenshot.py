@@ -5,7 +5,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 
-class WebScreenshot(BasePlugin):
+class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
         ip_address = settings.get('ip_address')
         if not ip_address:
