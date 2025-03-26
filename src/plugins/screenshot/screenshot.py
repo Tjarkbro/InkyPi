@@ -5,7 +5,11 @@
 =======
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+<<<<<<< HEAD
 >>>>>>> ff4d02d (From Selenium)
+=======
+from selenium.webdriver.chrome.service import Service
+>>>>>>> 4e55a9d (Service Selenium)
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 from utils.image_utils import take_screenshot
