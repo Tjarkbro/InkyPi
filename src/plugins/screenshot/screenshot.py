@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 import io
