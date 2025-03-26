@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 from utils.image_utils import take_screenshot
@@ -26,6 +27,8 @@ class Screenshot(BasePlugin):
 
         return image
 =======
+=======
+>>>>>>> 395b136 (Rename plugin)
 from plugins.base_plugin import BasePlugin
 from PIL import Image
 import io
@@ -62,4 +65,7 @@ class Screenshot(BasePlugin):
 
         image = Image.open(io.BytesIO(png))
         return image
+<<<<<<< HEAD
+>>>>>>> 395b136 (Rename plugin)
+=======
 >>>>>>> 395b136 (Rename plugin)
