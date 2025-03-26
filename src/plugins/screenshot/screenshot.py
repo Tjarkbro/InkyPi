@@ -3,8 +3,9 @@ from PIL import Image
 import io
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
+import chromedriver_binary  # Adds chromedriver binary to path
+#from selenium.webdriver.chrome.options import Options
+#from selenium.webdriver.chrome.service import Service
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
         ip_address = settings.get('ip_address')
@@ -22,13 +23,12 @@ class Screenshot(BasePlugin):
         return screenshot
 
     def capture_screenshot(self, url):
-        chrome_options = Options()
+        chrome_options = chromedriver_binary() # Options()
         chrome_options.add_argument("--headless")
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument(f"--window-size=1920,1080")
-        service = Service("/usr/local/inkypi/venv_inkypi/lib/chromium-browser/chromedriver")  # Pfad anpassen, falls nötig
-        driver = webdriver.Chrome(service=service,options=chrome_options)
-       # driver = webdriver.Chrome()
+        
+        driver = webdriver.Chrome(options=chrome_options)
         driver.get(url)
         png = driver.get_screenshot_as_png()
         driver.quit()
