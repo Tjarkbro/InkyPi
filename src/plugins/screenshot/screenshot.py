@@ -1,9 +1,9 @@
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 import io
 import requests
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
