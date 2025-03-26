@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from plugins.base_plugin.base_plugin import BasePlugin
 from PIL import Image
 from utils.image_utils import take_screenshot
@@ -30,6 +31,9 @@ class Screenshot(BasePlugin):
 =======
 >>>>>>> 395b136 (Rename plugin)
 from plugins.base_plugin import BasePlugin
+=======
+from plugins.base_plugin.base_plugin import BasePlugin
+>>>>>>> a9374bf (Import Base Plugin correctly)
 from PIL import Image
 import io
 import requests
