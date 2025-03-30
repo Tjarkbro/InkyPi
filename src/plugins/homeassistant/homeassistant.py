@@ -64,6 +64,7 @@ class HomeAssistantPlugin(BasePlugin):
 >>>>>>> 7b122af (home assistant css)
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
 
 =======
@@ -72,6 +73,32 @@ class HomeAssistantPlugin(BasePlugin):
         temp = self.get_state(ha_url, headers, entities["temp"])
         strom = self.get_state(ha_url, headers, entities["strom"])
         fenster = self.get_state(ha_url, headers, entities["fenster"])
+=======
+        # # API-Anfragen
+        # temp = self.get_state(ha_url, headers, entities["temp"])
+        # strom = self.get_state(ha_url, headers, entities["strom"])
+        # fenster = self.get_state(ha_url, headers, entities["fenster"])
+
+        numberRooms = int(settings.get('numberRooms', 1))  # Anzahl der Räume abrufen
+        rooms_data = {}
+        for i in range(1, numberRooms + 1):  # Durch alle Räume iterieren
+            room_name = settings.get(f"room_name_{i}", f"Raum_{i}")  # Falls leer, Standardname
+            entity_temp = f"sensor.{room_name.lower()}_temperature"  # Sensor-Entity für Temperatur
+            entity_power = f"sensor.{room_name.lower()}_power"  # Beispiel für Stromverbrauch
+            entity_window = f"binary_sensor.{room_name.lower()}_window"  # Fensterstatus
+
+            temp = self.get_state(ha_url, headers, entity_temp)
+            power = self.get_state(ha_url, headers, entity_power)
+            window_status = self.get_state(ha_url, headers, entity_window)
+
+            rooms_data[room_name] = {
+                "temperature": temp,
+                "temperature_unit": UNITS[units]["temperature"],
+                "power_usage": power,
+                "energy_unit": UNITS[units]["energy"],
+                "window_status": "Offen" if window_status == "on" else "Geschlossen"
+            }
+>>>>>>> 94c4a29 (Multiple Rooms)
 
         # Bild erstellen
 <<<<<<< HEAD
@@ -87,20 +114,31 @@ class HomeAssistantPlugin(BasePlugin):
             dimensions = dimensions[::-1]
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
 =======
 >>>>>>> 4889497 (test)
 =======
+=======
+        # # Template-Parameter vorbereiten
+        # image_template_params = {
+        #     "title": title,
+        #    # "current_date": dt.strftime("%A, %B %d"),
+        #     "temperature": temp,
+        #     "temperature_unit": UNITS[units]["temperature"],
+        #     "power_usage": strom,
+        #     "energy_unit": UNITS[units]["energy"],
+        #     "window_status": "Offen" if fenster == "on" else "Geschlossen",
+        #     "plugin_settings": settings,
+        #     "units": units
+        # }
+
+>>>>>>> 94c4a29 (Multiple Rooms)
         # Template-Parameter vorbereiten
 >>>>>>> 83b6be5 (Home assistant)
         image_template_params = {
             "title": title,
-           # "current_date": dt.strftime("%A, %B %d"),
-            "temperature": temp,
-            "temperature_unit": UNITS[units]["temperature"],
-            "power_usage": strom,
-            "energy_unit": UNITS[units]["energy"],
-            "window_status": "Offen" if fenster == "on" else "Geschlossen",
+            "rooms": rooms_data,
             "plugin_settings": settings,
             "units": units
         }
