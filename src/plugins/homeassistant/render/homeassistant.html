@@ -1,0 +1,10 @@
+{% extends "plugin.html" %}
+
+{% block content %}
+<div class="homeassistant-dashboard">
+  <h1>{{ title }}</h1>
+  <div class="temperature">{{ temperature }}</div>
+  <div class="power_usage">{{ power_usage }}</div>
+  <div class="window_status">{{ window_status }}</div>
+</div>
+{% endblock %}
