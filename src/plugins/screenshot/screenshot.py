@@ -25,7 +25,7 @@ class Screenshot(BasePlugin):
     def capture_screenshot(self, url):
         firefox_options = Options()
         firefox_options.binary_location = "/usr/bin/firefox"  # Falls Firefox woanders ist, anpassen!
-        # options.add_argument("--headless")  # TESTWEISE deaktivieren
+        firefox_options.add_argument("--headless")
         firefox_options.add_argument("--no-sandbox")
         firefox_options.add_argument("--disable-dev-shm-usage")
         #firefox_options.add_argument("--disable-gpu")
