@@ -44,7 +44,11 @@ class HomeAssistantPlugin(BasePlugin):
         title = "Titel"
 =======
         title = settings.get("title")
+<<<<<<< HEAD
 >>>>>>> 83b6be5 (Home assistant)
+=======
+        temp_unit = settings.get("temp_unit", "°C")
+>>>>>>> c2adcd1 (home assistant)
 
 <<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
@@ -79,6 +83,7 @@ class HomeAssistantPlugin(BasePlugin):
         image_template_params = {
             "title": title,
             "temperature": temp,
+            "temperature-unit": temp_unit,
             "power_usage": strom,
             "window_status": "Offen" if fenster == "on" else "Geschlossen",
             "plugin_settings": settings
@@ -127,9 +132,6 @@ class HomeAssistantPlugin(BasePlugin):
 
         return image
     
-  #  def parse_entities(self):
-
-
     def get_state(self, url, headers, entity_id):
         """ Ruft den aktuellen Zustand einer Entität ab """
         try:
