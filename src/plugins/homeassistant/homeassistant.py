@@ -14,7 +14,7 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 =======
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 >>>>>>> 83b6be5 (Home assistant)
@@ -115,6 +115,7 @@ class HomeAssistantPlugin(BasePlugin):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
 =======
 >>>>>>> 4889497 (test)
@@ -136,10 +137,19 @@ class HomeAssistantPlugin(BasePlugin):
 >>>>>>> 94c4a29 (Multiple Rooms)
 =======
 >>>>>>> fd79c66 (humidity)
+=======
+        # Aktuelles Datum und Uhrzeit abrufen
+        current_datetime = datetime.now()
+        formatted_date = current_datetime.strftime("%d.%m.%Y")  # Format: TT.MM.JJJJ
+        formatted_time = current_datetime.strftime("%H:%M:%S")  # Format: HH:MM:SS
+
+>>>>>>> c4c988f (date und time)
         # Template-Parameter vorbereiten
 >>>>>>> 83b6be5 (Home assistant)
         image_template_params = {
             "title": title,
+            "date": formatted_date,
+            "time": formatted_time,
             "rooms": rooms_data,
             "plugin_settings": settings,
             "units": units
