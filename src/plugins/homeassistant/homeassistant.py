@@ -62,6 +62,7 @@ class HomeAssistantPlugin(BasePlugin):
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         image = Image.new("RGB", (600, 448), (255, 255, 255))
 =======
         display_width = device_config.get("display_width", 600)
@@ -81,6 +82,9 @@ class HomeAssistantPlugin(BasePlugin):
 
         image = Image.new((display_width, display_height), image_template_params)
 >>>>>>> 4889497 (test)
+=======
+        image = Image.new((600, 448), image_template_params)
+>>>>>>> 6d1df08 (test)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
