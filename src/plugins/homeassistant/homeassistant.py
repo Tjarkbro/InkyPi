@@ -22,8 +22,8 @@ class HomeAssistantPlugin(BasePlugin):
         fenster = self.get_state(ha_url, headers, entities["fenster"])
 
         # Bild erstellen
-        display_width = device_config.get("display_width", 600)
-        display_height = device_config.get("display_height", 448)
+        display_width = device_config.get('display_width', 600)
+        display_height = device_config.get('display_height', 448)
         image = Image.new("1", (display_width, display_height), 255)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
