@@ -4,6 +4,15 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+
+UNITS = {
+    "standard": {
+        "temperature": "°C",
+        "speed": "m/s",
+        "energy": "kWh"
+    }
+}
+
 class HomeAssistantPlugin(BasePlugin):
     def generate_settings_template(self):
         template_params = super().generate_settings_template()
@@ -21,7 +30,7 @@ class HomeAssistantPlugin(BasePlugin):
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
         title = settings.get("title")
-        temp_unit = settings.get("temp_unit", "°C")
+        units = settings.get('units')
 
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
@@ -37,10 +46,12 @@ class HomeAssistantPlugin(BasePlugin):
         image_template_params = {
             "title": title,
             "temperature": temp,
-            "temperature-unit": temp_unit,
+            "temperature_unit": UNITS[units]["temperature"],
             "power_usage": strom,
+            "energy_unit": UNITS[units]["energy"],
             "window_status": "Offen" if fenster == "on" else "Geschlossen",
-            "plugin_settings": settings
+            "plugin_settings": settings,
+            "units": units
         }
 
         image = self.render_image(dimensions, "homeassistant.html", "homeassistant.css", image_template_params)
