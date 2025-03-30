@@ -76,7 +76,7 @@ class Screenshot(BasePlugin):
         firefox_options.add_argument("--disable-gpu")
         firefox_options.add_argument(f"--window-size=1920,1080")
 
-        service = Service("/usr/local/bin/geckodriver")  # Stelle sicher, dass dies der richtige Pfad ist!
+        service = Service("/usr/local/bin/geckodriver", log_output='/tmp/geckodriver.log')  # Stelle sicher, dass dies der richtige Pfad ist!
 
         driver = webdriver.Firefox(service=service, options=firefox_options)
 
