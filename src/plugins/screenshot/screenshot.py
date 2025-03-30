@@ -50,7 +50,7 @@ from PIL import Image
 import io
 import requests
 from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.firefox.options import Options
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
@@ -69,12 +69,12 @@ class Screenshot(BasePlugin):
         return screenshot
 
     def capture_screenshot(self, url):
-        chrome_options = Options()
-        chrome_options.add_argument("--headless")
-        chrome_options.add_argument("--disable-gpu")
-        chrome_options.add_argument(f"--window-size=1920,1080")
+        firefox_options = Options()
+        firefox_options.add_argument("--headless")
+        firefox_options.add_argument("--disable-gpu")
+        firefox_options.add_argument(f"--window-size=1920,1080")
 
-        driver = webdriver.Chrome(options=chrome_options)
+        driver = webdriver.Firefox(options=firefox_options)
 
         driver.get(url)
         png = driver.get_screenshot_as_png()
