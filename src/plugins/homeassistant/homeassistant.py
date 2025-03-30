@@ -18,6 +18,15 @@ import logging
 logger = logging.getLogger(__name__)
 >>>>>>> 83b6be5 (Home assistant)
 
+
+UNITS = {
+    "standard": {
+        "temperature": "°C",
+        "speed": "m/s",
+        "energy": "kWh"
+    }
+}
+
 class HomeAssistantPlugin(BasePlugin):
     def generate_settings_template(self):
         template_params = super().generate_settings_template()
@@ -45,10 +54,14 @@ class HomeAssistantPlugin(BasePlugin):
 =======
         title = settings.get("title")
 <<<<<<< HEAD
+<<<<<<< HEAD
 >>>>>>> 83b6be5 (Home assistant)
 =======
         temp_unit = settings.get("temp_unit", "°C")
 >>>>>>> c2adcd1 (home assistant)
+=======
+        units = settings.get('units')
+>>>>>>> 7b122af (home assistant css)
 
 <<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
@@ -83,10 +96,12 @@ class HomeAssistantPlugin(BasePlugin):
         image_template_params = {
             "title": title,
             "temperature": temp,
-            "temperature-unit": temp_unit,
+            "temperature_unit": UNITS[units]["temperature"],
             "power_usage": strom,
+            "energy_unit": UNITS[units]["energy"],
             "window_status": "Offen" if fenster == "on" else "Geschlossen",
-            "plugin_settings": settings
+            "plugin_settings": settings,
+            "units": units
         }
 
 <<<<<<< HEAD
