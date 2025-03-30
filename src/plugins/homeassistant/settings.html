@@ -18,3 +18,49 @@
         <option value="standard">Standard</option>
     </select>
 </div>
+
+<div class="form-group">
+    <label for="numberRooms" class="form-label">Rooms:</label>
+    <select id="numberRooms" name="numberRooms" class="form-input">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+        <option value=6>6</option>
+    </select>
+</div>
+
+<script>
+    document.getElementById("numberRooms").addEventListener("change", function() {
+        let roomsContainer = document.getElementById("roomsContainer");
+        roomsContainer.innerHTML = ""; // Löscht vorherige Inhalte
+
+        let numRooms = parseInt(this.value);
+
+        for (let i = 1; i <= numRooms; i++) {
+            let roomDiv = document.createElement("div");
+            roomDiv.classList.add("form-group");
+            roomDiv.innerHTML = `
+                <h3>Room ${i}</h3>
+                <label>Room Name:</label>
+                <input type="text" name="room_name_${i}" class="form-input"><br>
+
+                <label>Room Size:</label>
+                <input type="number" name="room_size_${i}" class="form-input"><br>
+
+                <label>Room Type:</label>
+                <select name="room_type_${i}" class="form-input">
+                    <option value="living">Living Room</option>
+                    <option value="bedroom">Bedroom</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="bathroom">Bathroom</option>
+                </select>
+            `;
+            roomsContainer.appendChild(roomDiv);
+        }
+    });
+
+    // Initial einmal aufrufen, damit auch der Standardwert (1 Room) geladen wird
+    document.getElementById("numberRooms").dispatchEvent(new Event("change"));
+</script>

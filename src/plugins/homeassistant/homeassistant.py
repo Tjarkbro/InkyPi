@@ -14,10 +14,10 @@ import requests
 from PIL import Image, ImageDraw, ImageFont
 =======
 import logging
+from datetime import datetime, timezone
 
 logger = logging.getLogger(__name__)
 >>>>>>> 83b6be5 (Home assistant)
-
 
 UNITS = {
     "standard": {
@@ -95,6 +95,7 @@ class HomeAssistantPlugin(BasePlugin):
 >>>>>>> 83b6be5 (Home assistant)
         image_template_params = {
             "title": title,
+           # "current_date": dt.strftime("%A, %B %d"),
             "temperature": temp,
             "temperature_unit": UNITS[units]["temperature"],
             "power_usage": strom,
