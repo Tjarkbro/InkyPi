@@ -27,7 +27,7 @@ class HomeAssistantPlugin(BasePlugin):
             "title": title
         }
 
-        image = Image.new((600, 448), image_template_params)
+        image = Image.new("RGB", (600, 448), (255, 255, 255))
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
