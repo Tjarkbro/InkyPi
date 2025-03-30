@@ -1,9 +1,9 @@
 from plugins.base_plugin.base_plugin import BasePlugin
 import requests
 import logging
+from datetime import datetime, timezone
 
 logger = logging.getLogger(__name__)
-
 
 UNITS = {
     "standard": {
@@ -45,6 +45,7 @@ class HomeAssistantPlugin(BasePlugin):
         # Template-Parameter vorbereiten
         image_template_params = {
             "title": title,
+           # "current_date": dt.strftime("%A, %B %d"),
             "temperature": temp,
             "temperature_unit": UNITS[units]["temperature"],
             "power_usage": strom,
