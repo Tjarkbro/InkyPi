@@ -21,6 +21,7 @@ class HomeAssistantPlugin(BasePlugin):
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
         title = settings.get("title")
+        temp_unit = settings.get("temp_unit", "°C")
 
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
@@ -36,6 +37,7 @@ class HomeAssistantPlugin(BasePlugin):
         image_template_params = {
             "title": title,
             "temperature": temp,
+            "temperature-unit": temp_unit,
             "power_usage": strom,
             "window_status": "Offen" if fenster == "on" else "Geschlossen",
             "plugin_settings": settings
@@ -45,9 +47,6 @@ class HomeAssistantPlugin(BasePlugin):
 
         return image
     
-  #  def parse_entities(self):
-
-
     def get_state(self, url, headers, entity_id):
         """ Ruft den aktuellen Zustand einer Entität ab """
         try:
