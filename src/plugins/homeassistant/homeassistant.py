@@ -1,7 +1,7 @@
 from plugins.base_plugin.base_plugin import BasePlugin
 import requests
 import logging
-from datetime import datetime, timezone
+from datetime import datetime
 
 logger = logging.getLogger(__name__)
 
@@ -53,9 +53,16 @@ class HomeAssistantPlugin(BasePlugin):
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
+        # Aktuelles Datum und Uhrzeit abrufen
+        current_datetime = datetime.now()
+        formatted_date = current_datetime.strftime("%d.%m.%Y")  # Format: TT.MM.JJJJ
+        formatted_time = current_datetime.strftime("%H:%M:%S")  # Format: HH:MM:SS
+
         # Template-Parameter vorbereiten
         image_template_params = {
             "title": title,
+            "date": formatted_date,
+            "time": formatted_time,
             "rooms": rooms_data,
             "plugin_settings": settings,
             "units": units
