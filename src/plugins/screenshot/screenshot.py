@@ -3,7 +3,10 @@ from PIL import Image
 import io
 import requests
 from selenium import webdriver
-#from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service as ChromiumService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.os_manager import ChromeType
+from selenium.webdriver.chrome.options import Options
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
@@ -22,12 +25,12 @@ class Screenshot(BasePlugin):
         return screenshot
 
     def capture_screenshot(self, url):
-        # chrome_options = Options()
-        # chrome_options.add_argument("--headless")
-        # chrome_options.add_argument("--disable-gpu")
-        # chrome_options.add_argument(f"--window-size=1920,1080")
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")
+        chrome_options.add_argument("--disable-gpu")
+        chrome_options.add_argument(f"--window-size=1920,1080")
         
-        driver = webdriver.Firefox() #options=chrome_options)
+        driver = webdriver.Chrome(options=chrome_options,service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()))
 
         driver.get(url)
         png = driver.get_screenshot_as_png()
