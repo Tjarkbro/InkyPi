@@ -4,6 +4,7 @@ import io
 import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.chrome.service import Service
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
@@ -27,7 +28,8 @@ class Screenshot(BasePlugin):
         chrome_options.add_argument("--disable-gpu")
         chrome_options.add_argument(f"--window-size=1920,1080")
         
-        driver = webdriver.Chrome(options=chrome_options,executable_path = '/usr/lib/chromium-browser/chromedriver')
+        service = Service('/usr/lib/chromium-browser/chromedriver')
+        driver = webdriver.Chrome(options=chrome_options,service=service)
 
         driver.get(url)
         png = driver.get_screenshot_as_png()
