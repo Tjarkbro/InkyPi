@@ -33,8 +33,11 @@ class HomeAssistantPlugin(BasePlugin):
 =======
         title = "Titel"
 
+<<<<<<< HEAD
 >>>>>>> 0b30510 (titel)
 
+=======
+>>>>>>> 4889497 (test)
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
         strom = self.get_state(ha_url, headers, entities["strom"])
@@ -44,16 +47,20 @@ class HomeAssistantPlugin(BasePlugin):
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
         dimensions = device_config.get_resolution()
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
 >>>>>>> 0b30510 (titel)
+=======
+>>>>>>> 4889497 (test)
         image_template_params = {
             "title": title
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
         image = Image.new("RGB", (600, 448), (255, 255, 255))
 =======
@@ -68,6 +75,12 @@ class HomeAssistantPlugin(BasePlugin):
 =======
         image = Image.new(dimensions, image_template_params)
 >>>>>>> 0b30510 (titel)
+=======
+        display_width = device_config.get('display_width', 600)
+        display_height = device_config.get('display_height', 448)
+
+        image = Image.new((display_width, display_height), image_template_params)
+>>>>>>> 4889497 (test)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
