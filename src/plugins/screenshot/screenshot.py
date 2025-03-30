@@ -4,6 +4,7 @@ import io
 import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
+from selenium.webdriver.firefox.service import Service
 
 class Screenshot(BasePlugin):
     def generate_image(self, settings, device_config):
@@ -23,11 +24,14 @@ class Screenshot(BasePlugin):
 
     def capture_screenshot(self, url):
         firefox_options = Options()
+        firefox_options.binary_location = "/usr/bin/firefox"  # Falls Firefox woanders ist, anpassen!
         firefox_options.add_argument("--headless")
         firefox_options.add_argument("--disable-gpu")
         firefox_options.add_argument(f"--window-size=1920,1080")
 
-        driver = webdriver.Firefox(options=firefox_options)
+        service = Service("/usr/local/bin/geckodriver")  # Stelle sicher, dass dies der richtige Pfad ist!
+
+        driver = webdriver.Firefox(service=service, options=firefox_options)
 
         driver.get(url)
         png = driver.get_screenshot_as_png()
