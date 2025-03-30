@@ -17,22 +17,20 @@ class HomeAssistantPlugin(BasePlugin):
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
         title = "Titel"
 
-
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
         strom = self.get_state(ha_url, headers, entities["strom"])
         fenster = self.get_state(ha_url, headers, entities["fenster"])
 
         # Bild erstellen
-        dimensions = device_config.get_resolution()
-        if device_config.get_config("orientation") == "vertical":
-            dimensions = dimensions[::-1]
-
         image_template_params = {
             "title": title
         }
 
-        image = Image.new(dimensions, image_template_params)
+        display_width = device_config.get('display_width', 600)
+        display_height = device_config.get('display_height', 448)
+
+        image = Image.new((display_width, display_height), image_template_params)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
