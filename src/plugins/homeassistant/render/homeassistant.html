@@ -7,32 +7,16 @@
     <div class="current-date">{{ current_date }}</div>
   </div>
 
-  <div class="window_status">{{ window_status }}</div>
-
-  <div class="living-room-container">
-    <div class="current-temperature">
-      <!-- Icon + Temperature -->
-        <!-- <img class="current-icon" src="{{current_day_icon}}" alt="Current Weather Icon"> -->
-        <div class="current-weather">
-          <div class="temperature">{{ temperature }}<span class="temperature-unit">{{temperature_unit}}</span></div>
-        </div>
-    </div>
-    <div class="energy">
-      <!-- Icon + Temperature -->
-        <!-- <img class="current-icon" src="{{current_day_icon}}" alt="Current Weather Icon"> -->
-        <div class="energy">
-          <div class="power_usage">{{ power_usage }}<span class="energy-unit">{{energy_unit}}</span></div>
-        </div>
-    </div>
-  </div>
-</div>
-
-{% for room_name, room_data in rooms.items() %}
-    <div class="room">
+<div class="data-points">
+  {% for room_name, room_data in rooms.items() %}
+    <div class="data-point column-container">
+      <div class="data-point-data">
         <h2>{{ room_name }}</h2>
         <p>Temperatur: {{ room_data.temperature }} {{ room_data.temperature_unit }}</p>
-        <p>Stromverbrauch: {{ room_data.power_usage }} {{ room_data.energy_unit }}</p>
+        <p>Stromverbrauch: {{ room_data.humidity }} {{ room_data.humidity_unit }}</p>
         <p>Fenster: {{ room_data.window_status }}</p>
+      </div>
     </div>
-{% endfor %}
+  {% endfor %}
+</div>
 {% endblock %}

@@ -42,3 +42,25 @@
   white-space: pre-line;
   overflow: hidden;
 }
+
+/* Room Grid */
+.data-points {
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5vh 1vw;
+  width: 50%;
+}
+.data-point {
+  width: 100%;
+  justify-content: left;
+  overflow: hidden;
+}
+.data-point-data {
+  width: 75%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  container-type: size;
+}

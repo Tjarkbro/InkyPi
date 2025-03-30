@@ -9,6 +9,7 @@ UNITS = {
     "standard": {
         "temperature": "°C",
         "speed": "m/s",
+        "humidity": "%",
         "energy": "kWh"
     }
 }
@@ -22,38 +23,28 @@ class HomeAssistantPlugin(BasePlugin):
     def generate_image(self, settings, device_config):    
         ha_url = settings.get("ha_url") # schon in HTML
         ha_token = settings.get("ha_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2MmQzMmMwNTMzNmM0NTk2ODZiZmI3ZTlhYTg2MTY5ZiIsImlhdCI6MTc0MzM1Mzk2MiwiZXhwIjoyMDU4NzEzOTYyfQ.XqW6_a8fsSAhz7j77NClRY2V3Ofhffp4BhSDNVfpYPc")
-        entities = settings.get("entities", {
-            "temp": "sensor.aqara_luftsensor_wohnzimmer_temperature",
-            "strom": "sensor.geschirrspuler_energy",
-            "fenster": "binary_sensor.fenster_wohnzimmer"
-        })
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
         title = settings.get("title")
         units = settings.get('units')
 
-        # # API-Anfragen
-        # temp = self.get_state(ha_url, headers, entities["temp"])
-        # strom = self.get_state(ha_url, headers, entities["strom"])
-        # fenster = self.get_state(ha_url, headers, entities["fenster"])
-
         numberRooms = int(settings.get('numberRooms', 1))  # Anzahl der Räume abrufen
         rooms_data = {}
         for i in range(1, numberRooms + 1):  # Durch alle Räume iterieren
             room_name = settings.get(f"room_name_{i}", f"Raum_{i}")  # Falls leer, Standardname
-            entity_temp = f"sensor.{room_name.lower()}_temperature"  # Sensor-Entity für Temperatur
-            entity_power = f"sensor.{room_name.lower()}_power"  # Beispiel für Stromverbrauch
-            entity_window = f"binary_sensor.{room_name.lower()}_window"  # Fensterstatus
+            entity_temp = f"sensor.aqara_luftsensor_{room_name.lower()}_temperature"  # Sensor-Entity für Temperatur
+            entity_humidity = f"sensor.aqara_luftsensor_{room_name.lower()}_humidity"  # Sensor-Entity für Feuchtigkeit
+            entity_window = f"binary_sensor.aqara_fenstersensor_{room_name.lower()}_window_contact"  # Fensterstatus
 
             temp = self.get_state(ha_url, headers, entity_temp)
-            power = self.get_state(ha_url, headers, entity_power)
+            humidity = self.get_state(ha_url, headers, entity_humidity)
             window_status = self.get_state(ha_url, headers, entity_window)
 
             rooms_data[room_name] = {
                 "temperature": temp,
                 "temperature_unit": UNITS[units]["temperature"],
-                "power_usage": power,
-                "energy_unit": UNITS[units]["energy"],
+                "humidity": humidity,
+                "humidity_unit": UNITS[units]["humidity"],
                 "window_status": "Offen" if window_status == "on" else "Geschlossen"
             }
 
@@ -61,19 +52,6 @@ class HomeAssistantPlugin(BasePlugin):
         dimensions = device_config.get_resolution()
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
-
-        # # Template-Parameter vorbereiten
-        # image_template_params = {
-        #     "title": title,
-        #    # "current_date": dt.strftime("%A, %B %d"),
-        #     "temperature": temp,
-        #     "temperature_unit": UNITS[units]["temperature"],
-        #     "power_usage": strom,
-        #     "energy_unit": UNITS[units]["energy"],
-        #     "window_status": "Offen" if fenster == "on" else "Geschlossen",
-        #     "plugin_settings": settings,
-        #     "units": units
-        # }
 
         # Template-Parameter vorbereiten
         image_template_params = {
