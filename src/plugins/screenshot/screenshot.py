@@ -24,13 +24,9 @@ class Screenshot(BasePlugin):
 
     def capture_screenshot(self, url):
         firefox_options = Options()
-        firefox_options.binary_location = "/usr/bin/firefox"  # Falls Firefox woanders ist, anpassen!
+        firefox_options.binary_location = "/usr/bin/firefox" 
         firefox_options.add_argument("--headless")
-        firefox_options.add_argument("--no-sandbox")
         firefox_options.add_argument("--disable-dev-shm-usage")
-        #firefox_options.add_argument("--disable-gpu")
-        firefox_options.add_argument(f"--window-size=1920,1080")
-        firefox_options.add_argument("--disable-extensions")
 
         service = Service("/usr/local/bin/geckodriver", log_output='/tmp/geckodriver.log')  # Stelle sicher, dass dies der richtige Pfad ist!
 
