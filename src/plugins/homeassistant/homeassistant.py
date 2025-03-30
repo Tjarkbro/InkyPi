@@ -56,7 +56,7 @@ class HomeAssistantPlugin(BasePlugin):
         # Aktuelles Datum und Uhrzeit abrufen
         current_datetime = datetime.now()
         formatted_date = current_datetime.strftime("%d.%m.%Y")  # Format: TT.MM.JJJJ
-        formatted_time = current_datetime.strftime("%H:%M:%S")  # Format: HH:MM:SS
+        formatted_time = current_datetime.strftime("%H:%M")  # Format: HH:MM
 
         # Template-Parameter vorbereiten
         image_template_params = {
