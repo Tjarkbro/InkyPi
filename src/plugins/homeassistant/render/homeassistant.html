@@ -7,15 +7,16 @@
     <p>{{ date }} - {{ time }}</p>
   </div>
 
-<div class="rooms-container">
-  {% for room_name, room_data in rooms.items() %}
-  <div class="room">
-      <h2>{{ room_name }}</h2>
-      <p><strong>Temperatur:</strong> {{ room_data.temperature }} {{ room_data.temperature_unit }}</p>
-      <p><strong>Feuchtigkeit:</strong> {{ room_data.humidity }} {{ room_data.humidity_unit }}</p>
-      <p><strong>Fenster:</strong> {{ room_data.window_status }}</p>
+  <div class="rooms-container">
+    {% for room_name, room_data in rooms.items() %}
+    <div class="room">
+        <h2>{{ room_name }}</h2>
+        <p><strong>Temperatur:</strong> {{ room_data.temperature }} {{ room_data.temperature_unit }}</p>
+        <p><strong>Feuchtigkeit:</strong> {{ room_data.humidity }} {{ room_data.humidity_unit }}</p>
+        <p><strong>Fenster:</strong> {{ room_data.window_status }}</p>
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
 </div>
 
 {% endblock %}
