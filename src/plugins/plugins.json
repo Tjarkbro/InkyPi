@@ -31,11 +31,6 @@
         "class": "Weather"
     },
     {
-        "display_name": "Screenshot",
-        "id": "screenshot",
-        "class": "Screenshot"
-    },
-    {
         "display_name": "Home Assistant",
         "id": "homeassistant",
         "class": "HomeAssistantPlugin"
