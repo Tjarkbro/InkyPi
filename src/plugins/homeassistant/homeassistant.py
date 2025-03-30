@@ -1,5 +1,5 @@
+from plugins.base_plugin.base_plugin import BasePlugin
 import requests
-from plugins.base_plugin import BasePlugin
 from PIL import Image, ImageDraw, ImageFont
 
 class HomeAssistantPlugin(BasePlugin):
