@@ -27,10 +27,7 @@ class HomeAssistantPlugin(BasePlugin):
             "title": title
         }
 
-        display_width = device_config.get('display_width', 600)
-        display_height = device_config.get('display_height', 448)
-
-        image = Image.new((display_width, display_height), image_template_params)
+        image = Image.new((600, 448), image_template_params)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
