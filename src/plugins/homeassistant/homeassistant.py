@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from plugins.base_plugin.base_plugin import BasePlugin
 import requests
+=======
+import requests
+from plugins.base_plugin import BasePlugin
+>>>>>>> 0d9077a (homeassistant)
 from PIL import Image, ImageDraw, ImageFont
 
 class HomeAssistantPlugin(BasePlugin):
@@ -15,7 +20,10 @@ class HomeAssistantPlugin(BasePlugin):
         })
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
+<<<<<<< HEAD
         title = "Titel"
+=======
+>>>>>>> 0d9077a (homeassistant)
 
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
@@ -23,11 +31,17 @@ class HomeAssistantPlugin(BasePlugin):
         fenster = self.get_state(ha_url, headers, entities["fenster"])
 
         # Bild erstellen
+<<<<<<< HEAD
         image_template_params = {
             "title": title
         }
 
         image = Image.new("RGB", (600, 448), (255, 255, 255))
+=======
+        display_width = device_config.get("display_width", 600)
+        display_height = device_config.get("display_height", 448)
+        image = Image.new("1", (display_width, display_height), 255)
+>>>>>>> 0d9077a (homeassistant)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
