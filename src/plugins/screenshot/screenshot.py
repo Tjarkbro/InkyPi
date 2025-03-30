@@ -27,7 +27,7 @@ class Screenshot(BasePlugin):
         # chrome_options.add_argument("--disable-gpu")
         # chrome_options.add_argument(f"--window-size=1920,1080")
         
-        driver = webdriver.Chrome() #options=chrome_options)
+        driver = webdriver.Firefox() #options=chrome_options)
 
         driver.get(url)
         png = driver.get_screenshot_as_png()
