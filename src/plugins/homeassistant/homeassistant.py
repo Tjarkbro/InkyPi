@@ -1,10 +1,15 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from plugins.base_plugin.base_plugin import BasePlugin
 import requests
 =======
 import requests
 from plugins.base_plugin import BasePlugin
 >>>>>>> 0d9077a (homeassistant)
+=======
+from plugins.base_plugin.base_plugin import BasePlugin
+import requests
+>>>>>>> d4b9274 (BasePlugin fix)
 from PIL import Image, ImageDraw, ImageFont
 
 class HomeAssistantPlugin(BasePlugin):
