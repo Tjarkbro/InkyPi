@@ -26,9 +26,14 @@ class HomeAssistantPlugin(BasePlugin):
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
 <<<<<<< HEAD
+<<<<<<< HEAD
         title = "Titel"
 =======
 >>>>>>> 0d9077a (homeassistant)
+=======
+        title = "Titel"
+
+>>>>>>> 0b30510 (titel)
 
         # API-Anfragen
         temp = self.get_state(ha_url, headers, entities["temp"])
@@ -38,10 +43,18 @@ class HomeAssistantPlugin(BasePlugin):
         # Bild erstellen
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+        dimensions = device_config.get_resolution()
+        if device_config.get_config("orientation") == "vertical":
+            dimensions = dimensions[::-1]
+
+>>>>>>> 0b30510 (titel)
         image_template_params = {
             "title": title
         }
 
+<<<<<<< HEAD
         image = Image.new("RGB", (600, 448), (255, 255, 255))
 =======
         display_width = device_config.get("display_width", 600)
@@ -52,6 +65,9 @@ class HomeAssistantPlugin(BasePlugin):
 >>>>>>> 85c3065 (fix)
         image = Image.new("1", (display_width, display_height), 255)
 >>>>>>> 0d9077a (homeassistant)
+=======
+        image = Image.new(dimensions, image_template_params)
+>>>>>>> 0b30510 (titel)
         draw = ImageDraw.Draw(image)
         font = ImageFont.load_default()
 
