@@ -25,25 +25,14 @@
   flex-direction: column;
   justify-content: end;
   text-align: center;
-  padding: 10px 0;
-}
-
-.header h1 {
-  font-size: min(50cqh, 8cqi);
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.header p {
-  font-size: min(30cqh, 6cqi);
-  font-weight: normal;
+  container-type: size;
 }
 
 /* Raum-Container */
 .rooms-container {
-  display: grid;
+  display: flex;
   justify-content: space-evenly;
-  gap: 0.5vh 1vw;
+  gap: 1.5dvw;
   width: 100%;
 }
 
@@ -72,20 +61,8 @@
 }
 
 /* Responsive Anpassungen */
-@media (max-width: 900px) {
+@media (max-width: 800px) {
   .room {
       flex: 1 1 calc(25% - 20px); /* 4 Spalten */
-  }
-}
-
-@media (max-width: 600px) {
-  .room {
-      flex: 1 1 calc(50% - 20px); /* 2 Spalten */
-  }
-}
-
-@media (max-width: 400px) {
-  .room {
-      flex: 1 1 100%; /* 1 Spalte auf kleinen Bildschirmen */
   }
 }
