@@ -26,4 +26,13 @@
     </div>
   </div>
 </div>
+
+{% for room_name, room_data in rooms.items() %}
+    <div class="room">
+        <h2>{{ room_name }}</h2>
+        <p>Temperatur: {{ room_data.temperature }} {{ room_data.temperature_unit }}</p>
+        <p>Stromverbrauch: {{ room_data.power_usage }} {{ room_data.energy_unit }}</p>
+        <p>Fenster: {{ room_data.window_status }}</p>
+    </div>
+{% endfor %}
 {% endblock %}
