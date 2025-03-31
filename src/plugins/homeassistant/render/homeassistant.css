@@ -1,0 +1,68 @@
+/* Basis-Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Gesamter Container */
+.homeassistant-dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1dvh;
+  width: 100%;
+  height: 100%;
+  font-family: "Jost";
+}
+
+/* Header-Bereich */
+.header {
+  width: 100%;
+  height: 15dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  text-align: center;
+  container-type: size;
+}
+
+/* Raum-Container */
+.rooms-container {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1.5dvw;
+  width: 100%;
+}
+
+/* Einzelne Raum-Box */
+.room {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex: 1 1 calc(25% - 20px); /* 4 Spalten-Layout */
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Raum-Titel */
+.room h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Raum-Daten */
+.room p {
+  font-size: 1.2rem;
+  margin: 5px 0;
+}
+
+/* Responsive Anpassungen */
+@media (max-width: 800px) {
+  .room {
+      flex: 1 1 calc(25% - 20px); /* 4 Spalten */
+  }
+}

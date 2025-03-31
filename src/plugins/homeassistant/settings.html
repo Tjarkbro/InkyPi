@@ -1,0 +1,57 @@
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+<div class="form-group">
+    <div class="form-group nowrap">
+        <label for="title" class="form-label">Title:</label>
+        <input type="text" id="title" name="title" placeholder="Type something..." required class="form-input">
+    </div>
+    <div class="form-group nowrap">
+        <label for="ha_url" class="form-label">Title:</label>
+        <input type="text" id="ha_url" name="ha_url" placeholder="http://192.168.178.122:8123" required class="form-input">
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="units" class="form-label">Units:</label>
+    <select id="units" name="units" class="form-input">
+        <option value="standard">Standard</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="numberRooms" class="form-label">Rooms:</label>
+    <select id="numberRooms" name="numberRooms" class="form-input">
+        <option value=1>1</option>
+        <option value=2>2</option>
+        <option value=3>3</option>
+        <option value=4>4</option>
+        <option value=5>5</option>
+        <option value=6>6</option>
+    </select>
+</div>
+
+<div id="roomsContainer" class="room-container"></div>
+
+<script>
+    document.getElementById("numberRooms").addEventListener("change", function() {
+        let roomsContainer = document.getElementById("roomsContainer");
+        roomsContainer.innerHTML = ""; // Löscht vorherige Inhalte
+
+        let numRooms = parseInt(this.value);
+
+        for (let i = 1; i <= numRooms; i++) {
+            let roomDiv = document.createElement("div");
+            roomDiv.classList.add("form-group");
+            roomDiv.innerHTML = `
+                <h3>Room ${i}</h3>
+                <label>Room Name:</label>
+                <input type="text" name="room_name_${i}" class="form-input"><br>
+            `;
+            roomsContainer.appendChild(roomDiv);
+        }
+    });
+
+    // Initial einmal aufrufen, damit auch der Standardwert (1 Room) geladen wird
+    document.getElementById("numberRooms").dispatchEvent(new Event("change"));
+</script>
