@@ -54,7 +54,7 @@
 
             for (let i = 1; i <= numRooms; i++) {
                 let roomDiv = document.createElement("div");
-                roomDiv.classList.add("room");
+                roomDiv.classList.add("form-group");
                 
                 let roomName = pluginSettings?.[`room_name_${i}`] || '';
                 let tempSensor = pluginSettings?.[`temperature_sensor_${i}`] || '';
@@ -62,16 +62,19 @@
                 let windowSensor = pluginSettings?.[`window_sensor_${i}`] || '';
                 
                 roomDiv.innerHTML = `
-                    <label>Room Name:</label>
-                    <input type="text" name="room_name_${i}" class="form-input room-name" value="${roomName}"><br>
-
-                    <div class="sensor-grid">
+                    <div class="form-group">
+                        <label>Room Name:</label>
+                        <input type="text" name="room_name_${i}" class="form-input room-name" value="${roomName}"><br>
+                    </div>
+                    <div class="form-group">
                         <label>Temperature Sensor:</label>
                         <input type="text" name="temperature_sensor_${i}" class="form-input" value="${tempSensor}"><br>
-
+                    </div>
+                    <div class="form-group">
                         <label>Humidity Sensor:</label>
                         <input type="text" name="humidity_sensor_${i}" class="form-input" value="${humiditySensor}"><br>
-
+                    </div>
+                    <div class="form-group">
                         <label>Window Sensor:</label>
                         <input type="text" name="window_sensor_${i}" class="form-input" value="${windowSensor}"><br>
                     </div>
