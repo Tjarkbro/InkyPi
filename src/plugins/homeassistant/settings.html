@@ -54,7 +54,7 @@
 
             for (let i = 1; i <= numRooms; i++) {
                 let roomDiv = document.createElement("div");
-                roomDiv.classList.add("form-group");
+                roomDiv.classList.add("room");
                 
                 let roomName = pluginSettings?.[`room_name_${i}`] || '';
                 let tempSensor = pluginSettings?.[`temperature_sensor_${i}`] || '';
@@ -65,7 +65,7 @@
                     <label>Room Name:</label>
                     <input type="text" name="room_name_${i}" class="form-input room-name" value="${roomName}"><br>
 
-                    <div class="sensor-group">
+                    <div class="sensor-grid">
                         <label>Temperature Sensor:</label>
                         <input type="text" name="temperature_sensor_${i}" class="form-input" value="${tempSensor}"><br>
 
