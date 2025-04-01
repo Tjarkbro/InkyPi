@@ -57,9 +57,9 @@
                 roomDiv.classList.add("form-group");
                 
                 let roomName = pluginSettings?.[`room_name_${i}`] || '';
-                let tempSensor = pluginSettings?.[`temperature_sensor_${i}`] || '';
-                let humiditySensor = pluginSettings?.[`humidity_sensor_${i}`] || '';
-                let windowSensor = pluginSettings?.[`window_sensor_${i}`] || '';
+                let tempSensor = pluginSettings?.[`sensor_temp_${i}`] || '';
+                let humiditySensor = pluginSettings?.[`sensor_humidity_${i}`] || '';
+                let windowSensor = pluginSettings?.[`sensor_window_${i}`] || '';
                 
                 roomDiv.innerHTML = `
                     <div class="form-group">
@@ -68,15 +68,15 @@
                     </div>
                     <div class="form-group">
                         <label>Temperature Sensor:</label>
-                        <input type="text" name="temperature_sensor_${i}" class="form-input" value="${tempSensor}"><br>
+                        <input type="text" name="sensor_temp_${i}" class="form-input" value="${tempSensor}"><br>
                     </div>
                     <div class="form-group">
                         <label>Humidity Sensor:</label>
-                        <input type="text" name="humidity_sensor_${i}" class="form-input" value="${humiditySensor}"><br>
+                        <input type="text" name="sensor_temp_${i}" class="form-input" value="${humiditySensor}"><br>
                     </div>
                     <div class="form-group">
                         <label>Window Sensor:</label>
-                        <input type="text" name="window_sensor_${i}" class="form-input" value="${windowSensor}"><br>
+                        <input type="text" name="sensor_temp_${i}" class="form-input" value="${windowSensor}"><br>
                     </div>
                 `;
                 roomsContainer.appendChild(roomDiv);
