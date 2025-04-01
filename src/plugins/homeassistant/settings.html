@@ -7,9 +7,13 @@
         <input type="text" id="title" name="title" placeholder="Type something..." required class="form-input">
     </div>
     <div class="form-group nowrap">
-        <label for="ha_url" class="form-label">Title:</label>
+        <label for="ha_url" class="form-label">URL:</label>
         <input type="text" id="ha_url" name="ha_url" placeholder="http://192.168.178.122:8123" required class="form-input">
     </div>
+</div>
+
+<div class="form-group">
+    <span>Note: https://developers.home-assistant.io/docs/api/rest/</span>
 </div>
 
 <div class="form-group">
@@ -34,33 +38,54 @@
 <div id="roomsContainer" class="room-container"></div>
 
 <script>
-    document.getElementById("numberRooms").addEventListener("change", function() {
-        let roomsContainer = document.getElementById("roomsContainer");
-        roomsContainer.innerHTML = ""; // Löscht vorherige Inhalte
 
-        let numRooms = parseInt(this.value);
+    document.addEventListener('DOMContentLoaded', () => {
 
-        for (let i = 1; i <= numRooms; i++) {
-            let roomDiv = document.createElement("div");
-            roomDiv.classList.add("form-group");
-            roomDiv.innerHTML = `
-                <h3>Room ${i}</h3>
-                <label>Room Name:</label>
-                <input type="text" name="room_name_${i}" class="form-input"><br>
-                
-                <label>Temperature Sensor:</label>
-                <input type="text" name="temperature_sensor_${i}" class="form-input"><br>
-                
-                <label>Humidity Sensor:</label>
-                <input type="text" name="humidity_sensor_${i}" class="form-input"><br>
-                
-                <label>Window Sensor:</label>
-                <input type="text" name="window_sensor_${i}" class="form-input"><br>
-            `;
-            roomsContainer.appendChild(roomDiv);
+        if (loadPluginSettings) {
+            document.getElementById('title').value = pluginSettings.title || 'Home Assistant';
+            document.getElementById('ha_url').value = pluginSettings.ha_url || '';
+            document.getElementById('units').value = pluginSettings.units || 'standard';
+            document.getElementById('numberRooms').value = pluginSettings.numberRooms || 1;
         }
+
+        function loadRooms(numRooms) {
+            let roomsContainer = document.getElementById("roomsContainer");
+            roomsContainer.innerHTML = "";
+
+            for (let i = 1; i <= numRooms; i++) {
+                let roomDiv = document.createElement("div");
+                roomDiv.classList.add("form-group");
+                
+                let roomName = pluginSettings?.[`room_name_${i}`] || '';
+                let tempSensor = pluginSettings?.[`temperature_sensor_${i}`] || '';
+                let humiditySensor = pluginSettings?.[`humidity_sensor_${i}`] || '';
+                let windowSensor = pluginSettings?.[`window_sensor_${i}`] || '';
+                
+                roomDiv.innerHTML = `
+                    <label>Room Name:</label>
+                    <input type="text" name="room_name_${i}" class="form-input room-name" value="${roomName}"><br>
+
+                    <div class="sensor-group">
+                        <label>Temperature Sensor:</label>
+                        <input type="text" name="temperature_sensor_${i}" class="form-input" value="${tempSensor}"><br>
+
+                        <label>Humidity Sensor:</label>
+                        <input type="text" name="humidity_sensor_${i}" class="form-input" value="${humiditySensor}"><br>
+
+                        <label>Window Sensor:</label>
+                        <input type="text" name="window_sensor_${i}" class="form-input" value="${windowSensor}"><br>
+                    </div>
+                `;
+                roomsContainer.appendChild(roomDiv);
+            }
+        }
+
+        document.getElementById("numberRooms").addEventListener("change", function() {
+            let numRooms = parseInt(this.value);
+            loadRooms(numRooms);
+        });
+
+        loadRooms(document.getElementById("numberRooms").value);
     });
 
-    // Initial einmal aufrufen, damit auch der Standardwert (1 Room) geladen wird
-    document.getElementById("numberRooms").dispatchEvent(new Event("change"));
 </script>
