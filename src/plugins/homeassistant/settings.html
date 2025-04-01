@@ -63,20 +63,20 @@
                 
                 roomDiv.innerHTML = `
                     <div class="form-group">
-                        <label>Room Name:</label>
-                        <input type="text" name="room_name_${i}" class="form-input room-name" value="${roomName}"><br>
+                        <label for="room_name_${i}" class="form-label">Room Name:</label>
+                        <input type="text" name="room_name_${i}" class="form-input" value="${roomName}"><br>
                     </div>
                     <div class="form-group">
-                        <label>Temperature Sensor:</label>
+                        <label for="sensor_temp_${i}" class="form-label">Temperature Sensor:</label>
                         <input type="text" name="sensor_temp_${i}" class="form-input" value="${tempSensor}"><br>
                     </div>
                     <div class="form-group">
-                        <label>Humidity Sensor:</label>
-                        <input type="text" name="sensor_temp_${i}" class="form-input" value="${humiditySensor}"><br>
+                        <label for="sensor_humidity_${i}" class="form-label">Humidity Sensor:</label>
+                        <input type="text" name="sensor_humidity_" class="form-input" value="${humiditySensor}"><br>
                     </div>
                     <div class="form-group">
-                        <label>Window Sensor:</label>
-                        <input type="text" name="sensor_temp_${i}" class="form-input" value="${windowSensor}"><br>
+                        <label for="sensor_window_${i}" class="form-label">Window Sensor:</label>
+                        <input type="text" name="sensor_window_" class="form-input" value="${windowSensor}"><br>
                     </div>
                 `;
                 roomsContainer.appendChild(roomDiv);
