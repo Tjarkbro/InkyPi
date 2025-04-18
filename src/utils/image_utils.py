@@ -92,7 +92,8 @@ def take_screenshot(target, dimensions, timeout_ms=None):
             f"--screenshot={img_file_path}", f'--window-size={dimensions[0]},{dimensions[1]}',
             "--no-sandbox", "--disable-gpu", "--disable-software-rasterizer",
             "--disable-dev-shm-usage", "--hide-scrollbars", 
-            "--virtual-time-budget=10000", "--lang=de-DE"
+            "--virtual-time-budget=10000", "--lang=de-DE",
+            "--run-all-compositor-stages-before-draw"
         ]
         if timeout_ms:
             command.append(f"--timeout={timeout_ms}")
