@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 from plugins.base_plugin.base_plugin import BasePlugin
 import requests
 <<<<<<< HEAD
@@ -17,11 +18,19 @@ from PIL import Image, ImageDraw, ImageFont
 =======
 import pytz
 >>>>>>> 06b2d54 (Upgrade for setting entities by yourself)
+=======
+from plugins.base_plugin.base_plugin import BasePlugin
+import requests
+import pytz
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
 import logging
 from datetime import datetime
 
 logger = logging.getLogger(__name__)
+<<<<<<< HEAD
 >>>>>>> 83b6be5 (Home assistant)
+=======
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
 
 DEFAULT_TIMEZONE = "US/Eastern"
 UNITS = {
@@ -45,6 +54,7 @@ class HomeAssistantPlugin(BasePlugin):
         ha_token = settings.get("ha_token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiI2MmQzMmMwNTMzNmM0NTk2ODZiZmI3ZTlhYTg2MTY5ZiIsImlhdCI6MTc0MzM1Mzk2MiwiZXhwIjoyMDU4NzEzOTYyfQ.XqW6_a8fsSAhz7j77NClRY2V3Ofhffp4BhSDNVfpYPc")
 
         headers = {"Authorization": f"Bearer {ha_token}", "Content-Type": "application/json"}
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -89,6 +99,11 @@ class HomeAssistantPlugin(BasePlugin):
 
 =======
 >>>>>>> fd79c66 (humidity)
+=======
+        title = settings.get("title", "Home Assistant")
+        units = settings.get('units', 'standard')
+
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
         numberRooms = int(settings.get('numberRooms', 1))  # Anzahl der Räume abrufen
         rooms_data = {}
         for i in range(1, numberRooms + 1):
@@ -111,6 +126,7 @@ class HomeAssistantPlugin(BasePlugin):
                 "humidity_unit": UNITS[units]["humidity"],
                 "window_status": "Offen" if window_status == "on" else "Geschlossen"
             }
+<<<<<<< HEAD
 >>>>>>> 94c4a29 (Multiple Rooms)
 
         # Bild erstellen
@@ -122,10 +138,15 @@ class HomeAssistantPlugin(BasePlugin):
 =======
 =======
 >>>>>>> 83b6be5 (Home assistant)
+=======
+
+        # Bild erstellen
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
         dimensions = device_config.get_resolution()
         if device_config.get_config("orientation") == "vertical":
             dimensions = dimensions[::-1]
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -152,6 +173,8 @@ class HomeAssistantPlugin(BasePlugin):
 =======
 >>>>>>> fd79c66 (humidity)
 =======
+=======
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
         # Aktuelles Datum und Uhrzeit abrufen
         timezone_name = device_config.get_config("timezone") or DEFAULT_TIMEZONE
         tz = pytz.timezone(timezone_name)
@@ -159,9 +182,13 @@ class HomeAssistantPlugin(BasePlugin):
         formatted_date = current_datetime.strftime("%d.%m.%Y")  # Format: TT.MM.JJJJ
         formatted_time = current_datetime.strftime("%H:%M")  # Format: HH:MM
 
+<<<<<<< HEAD
 >>>>>>> c4c988f (date und time)
         # Template-Parameter vorbereiten
 >>>>>>> 83b6be5 (Home assistant)
+=======
+        # Template-Parameter vorbereiten
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
         image_template_params = {
             "title": title,
             "date": formatted_date,
@@ -171,6 +198,7 @@ class HomeAssistantPlugin(BasePlugin):
             "units": units
         }
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -211,6 +239,9 @@ class HomeAssistantPlugin(BasePlugin):
 =======
         image = self.render_image(dimensions, "homeassistant.html", "homeassistant.css", image_template_params)
 >>>>>>> 83b6be5 (Home assistant)
+=======
+        image = self.render_image(dimensions, "homeassistant.html", "homeassistant.css", image_template_params)
+>>>>>>> a1f700bd4f5de2b2565085cf1a6e0470f561deff
 
         return image
     
